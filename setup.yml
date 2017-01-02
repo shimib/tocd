@@ -7,4 +7,17 @@
     - name: clone petclinic
       git: repo=https://github.com/shimib/spring-petclinic.git dest=/home/ec2-user/petclinic
     - name: clone tocd
-      git: repo=https://github.com/shimib/tocd.git dest=/home/ec2-user/tocd
+      git: repo=https://github.com/shimib/tocd.git dest=/home/ec2-user/tocd update=no
+    - name: install docker
+      become: yes
+      become_method: sudo
+      yum: name=docker state=latest
+    - name: add docker group to user ec2-user
+      user: name=ec2-user append=yes groups=docker
+      become: yes
+      become_method: sudo
+    - name: start the docker service
+      become: yes
+      become_method: sudo
+      service: name=docker state=started enabled=yes
+
