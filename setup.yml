@@ -20,4 +20,5 @@
       become: yes
       become_method: sudo
       service: name=docker state=started enabled=yes
-
+    - name: download and extract Maven
+      unarchive: dest=/home/ec2-user src=http://apache.mivzakim.net/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz copy=no creates=/home/ec2-user/apache-maven-3.3.9
