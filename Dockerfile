@@ -6,3 +6,7 @@ ENV M2_HOME=/apache-maven-3.3.9
 ENV M2=$M2_HOME/bin
 ENV PATH=$M2:$PATH
 
+COPY petclinic.jar .
+
+ENTRYPOINT java -jar petclinic.jar
+
